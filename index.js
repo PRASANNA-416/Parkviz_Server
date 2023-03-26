@@ -2,7 +2,13 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const url = `mongodb+srv://prasanna-8446:${process.env.MONGODB_PASSWORD}@parkviz.prxjsun.mongodb.net/?retryWrites=true&w=majority`; // Replace 'mydatabase' with your database name
 const express = require('express');
+const body_parser=require('body-parser')
 const app = express();
+app.use(body_parser);
+
+const userRoutes = require('./routes/user');
+
+app.use('/users', userRoutes);
 
 const options = {
     useNewUrlParser: true,
@@ -24,3 +30,5 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
   console.log('Server is listening on port 3000');
 });
+
+
