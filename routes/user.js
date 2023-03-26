@@ -6,6 +6,16 @@ router.get('/', (req, res) => {
   
   router.post('/', (req, res) => {
     // Handle POST request for /users route
+    const userData = req.body;
+  const user = new User(userData);
+  
+  user.save()
+    .then(() => {
+      res.send('User created successfully');
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+    });
   });
   
   router.put('/:userId', (req, res) => {
