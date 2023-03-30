@@ -13,9 +13,10 @@ app.use(body_parser.urlencoded({ extended: false }))
 app.use(body_parser.json())
 
 const userRoutes = require('./routes/user');
+const parkingRoutes = require('./routes/parking_slot');
 
 app.use('/users', userRoutes);
-
+app.use('/parking_slot', parkingRoutes);
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true
