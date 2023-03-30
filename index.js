@@ -4,7 +4,13 @@ const url = `mongodb+srv://prasanna-8446:${process.env.MONGODB_PASSWORD}@parkviz
 const express = require('express');
 const body_parser=require('body-parser')
 const app = express();
-app.use(body_parser);
+
+
+// parse application/x-www-form-urlencoded
+app.use(body_parser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(body_parser.json())
 
 const userRoutes = require('./routes/user');
 
