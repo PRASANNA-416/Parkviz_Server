@@ -18,7 +18,6 @@ const ticketSchema = new mongoose.Schema({
     },
     out_time:{
         type: Date,
-        required: true
     },
     payment_status:{
         type: Boolean,

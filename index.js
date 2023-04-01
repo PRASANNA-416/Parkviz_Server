@@ -17,7 +17,7 @@ const parkingRoutes = require('./routes/parking_slot');
 const { connectToDb } = require('./controllers/connection_controller');
 
 app.use('/users', userRoutes);
-app.use('/parking_slot', parkingRoutes);
+app.use('/parking_slots', parkingRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
