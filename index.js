@@ -5,6 +5,7 @@ const session = require('express-session');
 const connectionController = require('./controllers/connection')
 const userRoutes = require('./routes/user');
 const parkingRoutes = require('./routes/parking_slot');
+const authRoutes = require('./routes/auth');
 const MongoStore = require('connect-mongo');
 
 const url = `mongodb+srv://prasanna-8446:${process.env.MONGODB_PASSWORD}@parkviz.prxjsun.mongodb.net/?retryWrites=true&w=majority`; // Replace 'mydatabase' with your database name
@@ -17,7 +18,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false, maxAge: 30*24*60*60*1000 },
   store: MongoStore.create({
-    client: connectionPromise.then(mongooseConnection => mongooseConnection.clie)
+    client: connectionPromise.then(mongooseConnection => mongooseConnection.client)
   })
 }))
 
@@ -28,6 +29,7 @@ app.use(body_parser.json())
 
 app.use('/users', userRoutes);
 app.use('/parking_slots', parkingRoutes);
+app.use('/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
