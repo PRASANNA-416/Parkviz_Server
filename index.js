@@ -1,14 +1,25 @@
 require('dotenv').config();
 const express = require('express');
 const body_parser=require('body-parser')
-const connectionController = require('./controllers/connection_controller')
+const session = require('express-session');
+const connectionController = require('./controllers/connection')
 const userRoutes = require('./routes/user');
 const parkingRoutes = require('./routes/parking_slot');
+const MongoStore = require('connect-mongo');
 
 const url = `mongodb+srv://prasanna-8446:${process.env.MONGODB_PASSWORD}@parkviz.prxjsun.mongodb.net/?retryWrites=true&w=majority`; // Replace 'mydatabase' with your database name
-const db = connectionController.connectToDb(url)
-
+const connectionPromise = connectionController.connectToDb(url)
 const app = express();
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false, maxAge: 30*24*60*60*1000 },
+  store: MongoStore.create({
+    client: connectionPromise.then(mongooseConnection => mongooseConnection.clie)
+  })
+}))
 
 //body parsing middlewares
 app.use(body_parser.urlencoded({ extended: false }))
