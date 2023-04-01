@@ -8,12 +8,13 @@ const parkingRoutes = require('./routes/parking_slot');
 const url = `mongodb+srv://prasanna-8446:${process.env.MONGODB_PASSWORD}@parkviz.prxjsun.mongodb.net/?retryWrites=true&w=majority`; // Replace 'mydatabase' with your database name
 const db = connectionController.connectToDb(url)
 
+const app = express();
+
 //body parsing middlewares
 app.use(body_parser.urlencoded({ extended: false }))
 app.use(body_parser.json())
 
 
-const app = express();
 app.use('/users', userRoutes);
 app.use('/parking_slots', parkingRoutes);
 
