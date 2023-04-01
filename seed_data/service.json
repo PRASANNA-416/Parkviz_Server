@@ -1,0 +1,22 @@
+[
+    {
+        "name" : "Washing",
+        "price" : 500
+    },
+    {
+        "name" : "Repairing",
+        "price" : 2000
+    },
+    {
+        "name" : "Maintainence",
+        "price" : 1500
+    },
+    {
+        "name" : "Detailing",
+        "price" : 2100
+    },
+    {
+        "name" : "Inspection",
+        "price" : 1000
+    }
+]
