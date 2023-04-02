@@ -12,5 +12,5 @@ const parking_slotSchema = new mongoose.Schema({
 
 });
 
-const parking_slot = mongoose.model('Parking_slot', parking_slotSchema);
+const parking_slot = mongoose.model('ParkingSlot', parking_slotSchema);
 module.exports = parking_slot
