@@ -7,6 +7,7 @@ const userRoutes = require('./routes/user');
 const parkingRoutes = require('./routes/parking_slot');
 const authRoutes = require('./routes/auth');
 const MongoStore = require('connect-mongo');
+const { passAuthenticated } = require('./controllers/auth');
 
 const url = `mongodb+srv://prasanna-8446:${process.env.MONGODB_PASSWORD}@parkviz.prxjsun.mongodb.net/?retryWrites=true&w=majority`; // Replace 'mydatabase' with your database name
 const connectionPromise = connectionController.connectToDb(url)
@@ -27,9 +28,9 @@ app.use(body_parser.urlencoded({ extended: false }))
 app.use(body_parser.json())
 
 
-app.use('/users', userRoutes);
-app.use('/parking_slots', parkingRoutes);
 app.use('/auth', authRoutes);
+app.use('/users',passAuthenticated, userRoutes);
+app.use('/parking_slots',passAuthenticated, parkingRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
