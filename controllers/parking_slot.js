@@ -1,9 +1,9 @@
-const parking_slot = require("../models/parking_slot");
+const ParkingSlot = require("../models/parking_slot");
 
 exports.createParkingSlot = (req, res) => {
 
   const parkingData = req.body;
-  const parking = new Parking_slot(parkingData);
+  const parking = new ParkingSlot(parkingData);
   
   parking.save()
     .then(() => {
@@ -17,6 +17,14 @@ exports.createParkingSlot = (req, res) => {
   exports.setParkingStatus = async (req,res) =>{
 
     const {status} = req.body;
-    const updatesSlot = await parking_slot.findByIdAndUpdate(req.params.slotId,{status})
-    res.status(200).send("Status updates successfully")
+    const updatesSlot = await ParkingSlot.findByIdAndUpdate(req.params.slotId,{status})
+    res.status(200).send("Status updated successfully")
+  }
+
+  exports.getParkingSlot = async (req,res) => {
+    const parkingSlot = await ParkingSlot.findById(req.params.slotId);
+    res.status(200).json({
+      status : "success",
+      data : parkingSlot
+    })
   }
