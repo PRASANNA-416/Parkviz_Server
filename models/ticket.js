@@ -1,30 +1,32 @@
 const mongoose = require("mongoose");
 const ticketSchema = new mongoose.Schema({
-    UserId: {
-        type: mongoose.Schema.Types.ObjectId, ref:'User',
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
         required: true,
     },
-    car_reg_no: {
+    carNo: {
         type: String,
         required: true,
     },
-    slot_Id: {
-        type: String,
-        required: true
+    slotId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'ParkingSlot'
     },
-    in_time:{
+    inTime:{
         type: Date,
-        required: true
+        default: Date.now()
     },
-    out_time:{
-        type: Date,
+    outTime:{
+        type: Date
     },
-    payment_status:{
+    paymentStatus:{
         type: Boolean,
         default: false
     },
 
 });
 
-const ticket = mongoose.model('User', ticketSchema);
+const ticket = mongoose.model('Ticket', ticketSchema);
 module.exports = ticket

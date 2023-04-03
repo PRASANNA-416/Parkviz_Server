@@ -5,6 +5,7 @@ const session = require('express-session');
 const connectionController = require('./controllers/connection')
 const userRoutes = require('./routes/user');
 const parkingRoutes = require('./routes/parking_slot');
+const ticketRoutes = require('./routes/ticket');
 const authRoutes = require('./routes/auth');
 const MongoStore = require('connect-mongo');
 const { passAuthenticated } = require('./controllers/auth');
@@ -30,6 +31,7 @@ app.use(body_parser.json())
 
 app.use('/auth', authRoutes);
 app.use('/users',passAuthenticated, userRoutes);
+app.use('/tickets',passAuthenticated, ticketRoutes);
 app.use('/parking_slots',passAuthenticated, parkingRoutes);
 
 app.get('/', (req, res) => {
