@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const customerRequestSchema = new mongoose.Schema({
     userId:{
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     carNumber: {
